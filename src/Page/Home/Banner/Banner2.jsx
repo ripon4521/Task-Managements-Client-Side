@@ -21,7 +21,7 @@ const Banner2 = () => {
             {/* <!-- Hero Button --> */}
             <div className="flex items-center justify-center">
               <a
-                href="#"
+            
                 className="mr-5 flex items-center bg-[#276ef1] px-8 py-4 font-semibold text-white transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)_0px_0px] md:mr-6 lg:mr-8"
               >
                 <Link to='/signup' className="mr-6 font-bold">Get Started</Link>
