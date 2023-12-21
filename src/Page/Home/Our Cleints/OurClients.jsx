@@ -4,7 +4,7 @@ const OurClients = () => {
   return (
     <section className="bg-white font-dmsnas dark:bg-gray-900">
       <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold font-dmsnas text-gray-800 capitalize lg:text-3xl dark:text-white">
+        <h1 className="text-2xl font-bold font-dmsnas text-gray-800 capitalize lg:text-4xl dark:text-white">
         whom  <br /> this can be of benefit
         </h1>
 

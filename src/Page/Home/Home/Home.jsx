@@ -4,6 +4,7 @@ import OurClients from "../Our Cleints/OurClients";
 import RescentProducts from "../Our Recent Products/RescentProducts";
 import Banner2 from "../Banner/Banner2";
 import Navbar from "../Navbar/Navbar";
+import Facts from "../Facts/Facts";
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
        {/* <Banner></Banner> */}
        <OurClients></OurClients>
        <RescentProducts></RescentProducts>
+       <Facts></Facts>
         </div>
     );
 };
