@@ -34,30 +34,19 @@ const AuthProvider = ({children}) => {
         })
     }
 
-useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth, currentuser =>{
-        setUser(currentuser)
-        // if (currentuser) {
-        //     // Get token and store cleint
-        //     const userInfo = {email : currentuser.email}
-        //     axiosPublic.post('/jwt', userInfo)
-        //     .then(res=>{
-        //         if (res.data.token) {
-        //             localStorage.setItem('access-token', res.data.token);
-        //         }
-        //     })
-        // }else{
-        //     // Remove Token
-        //     localStorage.removeItem('access-token')
-        // }
-        // console.log('currentUser' , auth);
-       setloading(false)
-    })
-    return()=>{
-         unsubscribe()
-    } 
-},[])
-// console.log(user);
+    useEffect(()=>{
+        const UnSubscribe= onAuthStateChanged(auth, CurrentUser =>{
+            // console.log(CurrentUser);
+        
+            setUser(CurrentUser)
+          setloading(false)
+      
+        })
+        return ()=>{
+            UnSubscribe();
+        }
+    });
+console.log(user);
 
 const userInfo = {
     user,
