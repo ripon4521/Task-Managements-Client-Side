@@ -25,14 +25,14 @@ const Profile = () => {
     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
       
       <div className="flex g" >
-          <img className="w-10 rounded-full" alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+          <img className="w-5 rounded-full" alt="Tailwind CSS Navbar component" src={user?.photoURL} />
          
         </div>
        
      
         
       </div>
-      <h1>{user?.displayName}</h1>
+      <h1 className=" font-semibold font-dmsnas">{user?.displayName}</h1>
     </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>

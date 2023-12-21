@@ -1,9 +1,10 @@
+import MainContent from "./MainContent";
 import SideBar from "./SideBar";
 
 const Layout = () => {
     return (
        <div>
-        <SideBar></SideBar>
+       <MainContent></MainContent>
        </div>
     );
 };

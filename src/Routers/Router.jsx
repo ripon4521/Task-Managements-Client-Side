@@ -9,6 +9,7 @@ import SignUp from "../Page/Login/SignUp";
 import Login from "../Page/Login/Login";
 import Dasboard from "../Layout/Dasboard";
 import Layout from "../Dashboard/Layout";
+import AllTask from "../Dashboard/AllTask/AllTask";
 
  export const router = createBrowserRouter([
     {
@@ -33,8 +34,11 @@ import Layout from "../Dashboard/Layout";
       element:<Dasboard></Dasboard>,
       children:[
         {
-          path:'/dashboard',
+          path:'dashboard',
           element:<Layout></Layout>
+        },{
+          path:'alltask',
+          element:<AllTask></AllTask>
         }
       ]
     }
