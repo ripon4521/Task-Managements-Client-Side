@@ -1,6 +1,7 @@
 import  { useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import logo from '../../../../public/Logo/Frame 60809.png'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const Navbar = () => {
           <div className="flex flex-col px-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-4 xl:px-20">
             {/* SVG LOGO - YOU CAN REPLACE THIS */}
             <a className='flex items-center' href="#">
-             <img src={logo} alt="" />
+             <img className='w-10' src={logo} alt="" />
              <span className='text-2xl font-dmsnas font-bold'>Beress</span>
             </a>
             {/* MENU CONTENT 1 */}
@@ -50,15 +51,15 @@ const Navbar = () => {
             </div>
             {/* MENU CONTENT 2 */}
             <div className={`flex flex-col space-y-8 lg:flex lg:flex-row lg:space-x-3 lg:space-y-0 ${isOpen ? 'show' : 'hidden'}`}>
-              <a href="#" className="font-inter rounded-lg lg:px-6 lg:py-4 lg:hover:bg-gray-50 lg:hover:text-gray-800">
+              <Link to="/signup" className="font-inter rounded-lg lg:px-6 lg:py-4 lg:hover:bg-gray-50 lg:hover:text-gray-800">
                 Sign Up
-              </a>
-              <a
+              </Link>
+              <Link
                 className="font-inter rounded-lg bg-black px-8 py-4 text-center text-white hover:bg-gray-800"
-                href="#"
+                to="/login"
               >
                 Login
-              </a>
+              </Link>
             </div>
             {/* BURGER MENU */}
             <a href="#" className="absolute right-5 lg:hidden" onClick={toggleNavbar}>
