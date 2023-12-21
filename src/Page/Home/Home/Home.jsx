@@ -5,6 +5,7 @@ import RescentProducts from "../Our Recent Products/RescentProducts";
 import Banner2 from "../Banner/Banner2";
 import Navbar from "../Navbar/Navbar";
 import Facts from "../Facts/Facts";
+import Footer from "../Footer/Footer";
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
        <OurClients></OurClients>
        <RescentProducts></RescentProducts>
        <Facts></Facts>
+       <Footer></Footer>
         </div>
     );
 };
