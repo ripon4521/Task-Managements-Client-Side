@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
 import {
 
   RouterProvider,
@@ -12,10 +16,12 @@ import AuthProvider from './Provider/AuthContext.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
 <HelmetProvider>
-  
-<AuthProvider>
+  <QueryClientProvider client={queryClient}> 
+  <AuthProvider>
      <RouterProvider router={router} />
      </AuthProvider>
+  </QueryClientProvider>
+
 </HelmetProvider>
   </React.StrictMode>,
 )

@@ -1,13 +1,17 @@
 // import { GiCampfire } from "react-icons/gi";
 
 import { useForm } from "react-hook-form";
-import fire from "../../../public/Task/image-removebg-preview (1).png";
+import fire from "../../assets/Task/image-removebg-preview (1).png";
 import { CiCirclePlus } from "react-icons/ci";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { axiosUrl } from "../../Hooks/useUrl";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const AddTask = () => {
+    const {user} = useContext(AuthContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [data, setData] = useState([]);
 
@@ -26,9 +30,7 @@ const AddTask = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    setData(data);
-  };
+
 
   const optionsData = [
     { value: "Low", label: "Low" },
@@ -41,13 +43,42 @@ const AddTask = () => {
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   };
-  const info = {
-    data,
-    selectedDate,
-    selectedOption,
-  };
+
   //   console.log(selectedOption);
-  console.log(info);
+//   console.log(info);
+
+  const onSubmit = (data) => {
+    const info = {
+        taskname:data.taskName,
+        description:data.description,
+        selectedDate,
+        selectedOption,
+        email: user?.email
+      };
+
+    axiosUrl.post('/alltask',info)
+    .then(res=> {
+        if (res.data.acknowledged == true) {
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            window.location.reload();
+            setData(data);
+        }else{
+          return alert('SSomething Went Erong')
+        }
+    })
+  
+    
+  };
+ 
+
+
+  
   return (
     <div>
       <div className="flex items-center justify-center ">
@@ -68,20 +99,21 @@ const AddTask = () => {
             </h3>
             <div className="md:pl-16  mt-4">
               <input
-                {...register("taskName")}
+                {...register("taskName",{ required: true })}
                 type="text"
                 placeholder="Task Name"
                 className="input  input-bordered input-success w-full max-w-xs"
                 required
               />
+                {errors.taskName && <span>This field is required</span>}
               <input
-                {...register("description")}
+                {...register("description",{ required: true })}
                 type="text"
                 placeholder="Description"
                 className="input mt-2 h-16 input-bordered input-success w-full max-w-xs"
               />
-            </div>
-            <div className="md:pl-10 pl-0">
+                {errors.description && <span>This field is required</span>}
+              <div className="md:pl-10 pl-0">
               <div>
                 <label htmlFor="selectOption">Set Your Pririty</label>
                 <select
@@ -99,6 +131,9 @@ const AddTask = () => {
               </div>
             </div>
 
+            </div>
+           
+
             <div className="modal-action">
               <form className="flex gap-5" method="dialog">
                 {/* if there is a button in form, it will close the modal */}
@@ -106,8 +141,10 @@ const AddTask = () => {
                   Send
                 </button>
               </form>
+             
             </div>
           </from>
+          
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}

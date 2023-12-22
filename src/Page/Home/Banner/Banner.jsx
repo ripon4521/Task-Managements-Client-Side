@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import logo from '../../../../public/Logo/Frame 60809.png'
+import logo from '../../../assets/Logo/Frame 60809.png'
 import { NavLink } from 'react-router-dom'
 
 const navigation = [

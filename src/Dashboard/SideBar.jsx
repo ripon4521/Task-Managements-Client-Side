@@ -56,7 +56,7 @@ const SideBar = () => {
 
         <div className="mt-10">
           <ul className="flex flex-col pl-5 gap-10 font-dmsnas">
-            <NavLink  to='dashboard'
+            <NavLink  to='dsds'
               className={({ isActive }) =>
                 isActive
                   ? " flex items-center gap-1 text-red-600  font-bold font-dmsnas"
@@ -66,7 +66,7 @@ const SideBar = () => {
               {" "}
               <CiBookmarkPlus className="text-2xl"></CiBookmarkPlus> Add Task
             </NavLink>
-            <NavLink to='alltask'
+            <NavLink to='dashboard'
               className={({ isActive }) =>
                 isActive
                   ? " flex items-center gap-1 text-red-600 font-bold font-dmsnas"

@@ -1,6 +1,6 @@
-import products1 from '../../../../public/Products/Complex Data.png'
-import products2 from '../../../../public/Products/Products2.png'
-import products3 from '../../../../public/Products/Products3.png'
+import products1 from '../../../../src/assets/Products/Complex Data.png'
+import products2 from '../../../../src/assets/Products/Products2.png'
+import products3 from '../../../assets/Products/Products3.png'
 
 const RescentProducts = () => {
     return (
