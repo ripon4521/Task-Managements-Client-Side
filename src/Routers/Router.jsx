@@ -11,6 +11,7 @@ import Dasboard from "../Layout/Dasboard";
 import Layout from "../Dashboard/Layout";
 import AllTask from "../Dashboard/AllTask/AllTask";
 import Tarsh from "../Dashboard/Tarsh/Tarsh";
+import Complete from "../Dashboard/Complete/Complete";
 
  export const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ import Tarsh from "../Dashboard/Tarsh/Tarsh";
         },{
           path:'trash',
           element:<Tarsh></Tarsh>
+        },
+        {
+          path:'complete',
+          element:<Complete></Complete>
         }
       ]
     }
