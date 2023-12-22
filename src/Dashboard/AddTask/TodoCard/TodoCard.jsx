@@ -8,6 +8,30 @@ import { axiosUrl } from "../../../Hooks/useUrl";
 
 const TodoCard = ({item, refetch}) => {
 
+const handleComplete=(item)=>{
+
+    axiosUrl.post('/complete', item)
+    .then(res=> {
+        if (res.data.acknowledged == true) {
+            Swal.fire({
+                title: "Tarsh!",
+                text: "Your Todo has been Complete.",
+                icon: "success" })
+         axiosUrl.delete(`/alltask/${item?._id}`)
+         .then(res=>{
+                 if (res.data.deletedCount > 0) {
+                   
+     
+     
+                       refetch()
+                     }})
+          refetch()
+        }else{
+            console.log('Something Went Wrong');
+        }
+    })
+}
+
 const handleTrash=(item)=>{
 
     axiosUrl.post('/trash', item)
@@ -42,6 +66,8 @@ const handleTrash=(item)=>{
 
 
 
+
+
   return (
     <article className="rounded-xl font-dmsnas cursor-pointer mt-5 border-2 border-gray-100 bg-white">
 
@@ -59,7 +85,7 @@ const handleTrash=(item)=>{
           </p>
     <div className="flex items-center gap-5 mt-5">
         <button className="font-dmsnas text-xl text-white bg-violet-800 rounded-lg border p-2"><FaPen /></button>
-        <button  className="font-dmsnas text-[20px] text-white bg-yellow-600 rounded-lg border p-2"><IoCheckmarkDoneSharp /></button>
+        <button onClick={()=>handleComplete(item)}  className="font-dmsnas text-[20px] text-white bg-yellow-600 rounded-lg border p-2"><IoCheckmarkDoneSharp /></button>
         <button onClick={()=>handleTrash(item)} className="font-dmsnas font-bold text-[20px] text-white bg-red-600 rounded-lg border p-2"><CiTrash /></button>
        
     </div>

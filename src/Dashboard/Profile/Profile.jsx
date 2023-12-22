@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const Profile = () => {
     const {user, logout} =useContext(AuthContext)
+    const from = "/";
+    const navigate = useNavigate();
     // console.log(user?.photoURL);
     const handleLogout=()=>{
         logout()
@@ -16,7 +19,9 @@ const Profile = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
+              navigate(from, { replace: true });
         })
+
     }
     return (
         <div>

@@ -6,35 +6,15 @@ const TrashCard = ({item,refetch}) => {
    
 
     const handleDelete = (item)=>{
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-                axiosUrl.delete(`/trash/${item?._id}`)
-          .then(res=>{
-            if (res.data.deletedCount > 0) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                  });
-              
-                  refetch()
-      
-            }
-           
-          })
-            } else{
-                alert ('Something Went Wrong')
-            }
-          });
-        
+        console.log(item);
+        axiosUrl.delete(`/trash/${item?._id}`)
+        .then(result=>{
+            console.log(result)
+        alert ('Success')
+        })
+        .catch(err=>{
+            console.log(err);
+        })
       
     }
 
