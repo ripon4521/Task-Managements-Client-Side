@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const {sighnIn} = useContext(AuthContext)
-    const from = "/";
+    const from = "/dashboard/dashboard";
     const navigate = useNavigate();
 
   const {

@@ -3,10 +3,71 @@ import { FaPen } from "react-icons/fa";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { axiosUrl } from "../../../Hooks/useUrl";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Provider/AuthContext";
+import { useLoaderData } from "react-router-dom";
 
 
 
 const TodoCard = ({item, refetch}) => {
+    // const loader =useLoaderData()
+    const {user} = useContext(AuthContext)
+  
+    
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedOption, setSelectedOption] = useState("");
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+      };
+    
+    
+
+    const handleSelectChange = (event) => {
+  
+      setSelectedOption(event.target.value);
+  
+    };
+    
+  const optionsData = [
+    { value: "Low", label: "Low" },
+    { value: "Midium", label: "Midim" },
+    { value: "High", label: "High" },
+    // Add more options as needed
+  ];
+ 
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+
+
+
+    const onSubmit =(data, item)=>{
+        const taskname = data.taskName;
+        const description = data.description;
+       
+          const update = {
+            taskname,
+            description,
+            selectedDate,
+            selectedOption,
+           
+        }
+
+        axiosUrl.put(`/alltask/${item._id}`,update )
+        .then(res=>{
+            console.log('success');
+        })
+
+        
+                   
+           
+
+    }
+
 
 const handleComplete=(item)=>{
 
@@ -84,8 +145,74 @@ const handleTrash=(item)=>{
             iure delectus ut totam natus nesciunt ex? Ducimus, enim.
           </p>
     <div className="flex items-center gap-5 mt-5">
-        <button className="font-dmsnas text-xl text-white bg-violet-800 rounded-lg border p-2"><FaPen /></button>
-        <button onClick={()=>handleComplete(item)}  className="font-dmsnas text-[20px] text-white bg-yellow-600 rounded-lg border p-2"><IoCheckmarkDoneSharp /></button>
+        <button onClick={() => document.getElementById("my_modal_5").showModal()} className="font-dmsnas text-xl text-white bg-violet-800 rounded-lg border p-2"><FaPen /></button>
+
+        <dialog id="my_modal_5" className="modal modal-center sm:modal-middle">
+          <from onSubmit={handleSubmit(onSubmit)} className="modal-box">
+            <h3 className="text-2xl font-dmsnas font-bold text-center">
+              Add Task
+            </h3>
+            <div className="md:pl-16  mt-4">
+              <input
+                {...register("taskName",{ required: true })}
+                type="text"
+                placeholder="Task Name"
+                defaultValue={item?.taskname}
+                className="input  input-bordered input-success w-full max-w-xs"
+                required
+              />
+                {errors.taskName && <span>This field is required</span>}
+              <input
+                {...register("description",{ required: true })}
+                type="text"
+                defaultValue={item?.description}
+                placeholder="Description"
+                className="input mt-2 h-16 input-bordered input-success w-full max-w-xs"
+              />
+                {errors.description && <span>This field is required</span>}
+              <div className="md:pl-10 pl-0">
+              <div>
+                <label htmlFor="selectOption">Set Your Pririty</label>
+                <select
+                  id="selectOption"
+                  value={selectedOption}
+                  onChange={handleSelectChange}
+                >
+                  <option value="" disabled></option>
+                  {optionsData.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            </div>
+           
+
+            <div className="modal-action">
+              <form className="flex gap-5" method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="px-3 py-2 bg-red-600 text-white font-dmsnas font-semibold rounded-lg">
+                  Update
+                </button>
+              </form>
+             
+            </div>
+          </from>
+          
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </dialog>
+
+
+
+        <button  onClick={()=>handleComplete(item)}  className="font-dmsnas text-[20px] text-white bg-yellow-600 rounded-lg border p-2"><IoCheckmarkDoneSharp /></button>
         <button onClick={()=>handleTrash(item)} className="font-dmsnas font-bold text-[20px] text-white bg-red-600 rounded-lg border p-2"><CiTrash /></button>
        
     </div>

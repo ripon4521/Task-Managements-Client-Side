@@ -56,7 +56,7 @@ const AddTask = () => {
         email: user?.email
       };
 
-    axiosUrl.post('/alltask',info)
+    axiosUrl.post(`/alltask`,info)
     .then(res=> {
         if (res.data.acknowledged == true) {
           Swal.fire({

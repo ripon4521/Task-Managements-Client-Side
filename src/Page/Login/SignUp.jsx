@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const SignUp = () => {
   const { user, googleLogin,createUser } = useContext(AuthContext);
   // const location = useLocation();
-  const from = "/";
+  const from = "/dashboard/Alltask";
   const navigate = useNavigate();
   const fa = (
     <>
@@ -78,7 +78,7 @@ const SignUp = () => {
           {/* Button */}
           <a
             onClick={handleGoogleLogin}
-            href="#"
+           
             className="mx-auto flex max-w-sm justify-center bg-[#276ef1] px-8 py-4 text-center font-semibold text-white transition shadow-[rgb(171,196,245)]-8px-8px hover:shadow-[rgb(171,196,245)]-0px-0px"
           >
             <img
